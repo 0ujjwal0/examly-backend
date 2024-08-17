@@ -1,15 +1,22 @@
 const express = require("express");
+const cors= require("cors")
 const dotenv = require("dotenv");
 const connectDB = require("./modal/config/db");
 const userRoutes = require("./routes/userRoutes");
 const testRoutes = require("./routes/testroutes");
 const questionRoutes = require("./routes/questionRoutes");
 const submissionRoutes=require("./routes/submissionroutes")
-// Other routes
+
 
 const app = express();
 dotenv.config();
 connectDB();
+app.use(cors({
+    origin:"http://localhost:5000",
+    methods:"GET,POST,PUT,DELETE",
+    credentials:true
+}));
+
 app.use(express.json());
 
 app.use("/api/tests", testRoutes);
