@@ -12,11 +12,13 @@ const swaggerUi=require('swagger-ui-express')
 const app = express();
 dotenv.config();
 connectDB();
-app.use(cors({
-    origin:"http://localhost:3000",
-    methods:"GET,POST,PUT,DELETE",
-    credentials:true
-}));
+app.use(
+  cors({
+    origin: "https://examly-lovat.vercel.app",
+    methods: "GET,POST,PUT,DELETE",
+    credentials: true,
+  })
+);
 
 app.use(express.json());
 
