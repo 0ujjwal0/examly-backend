@@ -1,0 +1,404 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "examts",
+    "version": "1.0.0-oas3"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5000/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "users"
+    },
+    {
+      "name": "test generation"
+    },
+    {
+      "name": "questions"
+    },
+    {
+      "name": "submissions"
+    }
+  ],
+  "paths": {
+    "/api/user/": {
+      "post": {
+        "tags": ["users"],
+        "summary": "register new user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "name": "ujjwal",
+                  "email": "sangwan@gmail.com",
+                  "password": "ujjwal"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/user/login": {
+      "post": {
+        "tags": ["users"],
+        "summary": "login",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "email": "sangwan@gmail.com",
+                  "password": "ujjwal"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/user/delete/66c0c6ea51c85aba2101c99e": {
+      "delete": {
+        "tags": ["users"],
+        "summary": "deleteUser",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/api/tests/": {
+      "get": {
+        "tags": ["test generation"],
+        "summary": "get all tests",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      },
+      "post": {
+        "tags": ["test generation"],
+        "summary": "create test",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "title": "Math Test",
+                  "description": "A test on basic math concepts.",
+                  "questions": [
+                    "60c72b2f8f1b2c001d4e6b60",
+                    "60c72b2f8f1b2c001d4e6b61"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/api/tests/66c0e757b6149a39ffafb4c0": {
+      "put": {
+        "tags": ["test generation"],
+        "summary": "edit test",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "title": "Advanced Math Test",
+                  "description": "A test on advanced math concepts.",
+                  "questions": ["60c72b2f8f1b2c001d4e6b63"],
+                  "isDeleted": false
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": ["test generation"],
+        "summary": "New Request",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/api/questions/": {
+      "post": {
+        "tags": ["questions"],
+        "summary": "create question",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "question": "What is the capital of France?",
+                  "options": ["Paris", "London", "Berlin", "Madrid"],
+                  "correctOption": "Paris",
+                  "testId": "66c0ed1235de009217e46e05",
+                  "marks": 5
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/api/questions/66c0f0c635de009217e46e2a": {
+      "get": {
+        "tags": ["questions"],
+        "summary": "get question",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/api/questions/66c0ed4535de009217e46e0a": {
+      "put": {
+        "tags": ["questions"],
+        "summary": "change question",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "question": "What is the capital of Germany?",
+                  "options": ["Paris", "London", "Berlin", "Madrid"],
+                  "correctOption": "Berlin",
+                  "marks": 10
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": ["questions"],
+        "summary": "soft delete question",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/api/submission/": {
+      "post": {
+        "tags": ["submissions"],
+        "summary": "new submission",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "testId": "66c0ed1235de009217e46e05",
+                  "selections": [
+                    {
+                      "questionId": "66c0f0c635de009217e46e2a",
+                      "option": "B",
+                      "savedAt": "2024-08-19T10:00:00Z"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/api/submission/66c0f5578edab8a6212757bb": {
+      "put": {
+        "tags": ["submissions"],
+        "summary": "update submission",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "selections": [
+                    {
+                      "questionId": "66c0f0c635de009217e46e2a",
+                      "option": "A",
+                      "savedAt": "2024-08-19T10:15:00Z"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": ["submissions"],
+        "summary": "delete submission",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {}
+}

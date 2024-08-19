@@ -6,7 +6,7 @@ const userRoutes = require("./routes/userRoutes");
 const testRoutes = require("./routes/testroutes");
 const questionRoutes = require("./routes/questionRoutes");
 const submissionRoutes=require("./routes/submissionroutes")
-const swaggerDocument=require('../examly/api-doc.json')
+const swaggerDocument=require('./api-doc.json')
 const swaggerUi=require('swagger-ui-express')
 
 const app = express();
