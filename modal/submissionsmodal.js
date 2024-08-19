@@ -24,6 +24,8 @@ const submissionSchema = new mongoose.Schema(
     },
     selections: [selectionSchema],
     isDeleted: { type: Boolean, default: false },
+    isGraded: { type: Boolean, default: false },
+    marks: { type: Number, default: 0 }
   },
   {
     timestamps: true,
