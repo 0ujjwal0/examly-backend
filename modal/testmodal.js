@@ -6,6 +6,7 @@ const testSchema = mongoose.Schema(
     description: { type: String, required: true },
     questions: [{ type: mongoose.Schema.Types.ObjectId, ref: "Question" }],
     isDeleted: { type: Boolean, default: false },
+    duration: {type:Number,default:60 }
   },
   {
     timestamps: true,

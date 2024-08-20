@@ -1,9 +1,9 @@
 const asyncHandler = require("express-async-handler");
 const Submission = require("../modal/submissionsmodal");
 
-// @desc    Create a new submission
-// @route   POST /api/submissions
-// @access  Private
+//     Create a new submission
+//    POST /api/submissions
+
 const createSubmission = asyncHandler(async (req, res) => {
   const { testId, selections } = req.body;
 
@@ -18,9 +18,9 @@ const createSubmission = asyncHandler(async (req, res) => {
   res.status(201).json(createdSubmission);
 });
 
-// @desc    Update an existing submission
-// @route   PUT /api/submissions/:id
-// @access  Private
+//     Update an existing submission
+//    PUT /api/submissions/:id
+
 const updateSubmission = asyncHandler(async (req, res) => {
   const { selections } = req.body;
 
@@ -39,9 +39,9 @@ const updateSubmission = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc    Soft delete a submission
-// @route   DELETE /api/submissions/:id
-// @access  Private
+//     Soft delete a submission
+//    DELETE /api/submissions/:id
+
 const deleteSubmission = asyncHandler(async (req, res) => {
   const submission = await Submission.findById(req.params.id);
 
