@@ -13,14 +13,13 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-// Method to compare entered password with hashed password
+
 userSchema.methods.matchPassword = async function (enteredPass) {
   return await bcrypt.compare(enteredPass, this.password);
 };
 
-// Pre-save hook to hash the password before saving
+
 userSchema.pre("save", async function (next) {
-  // Check if the password field is modified
   if (!this.isModified("password")) {
     return next();
   }

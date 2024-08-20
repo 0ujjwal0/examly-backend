@@ -1,8 +1,10 @@
 const cron = require("node-cron");
 const Submission = require("../modal/submissionsmodal");
 const Question = require("../modal/questionmodal");
-const User=require("../modal/usermodal")
+const User = require("../modal/usermodal");
 const nodemailer = require("nodemailer");
+const pug = require("pug");
+const path = require("path");
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -12,11 +14,14 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+const compileTemplate = pug.compileFile(
+  path.join(__dirname, "../template/emailtemplate.pug")
+);
+
 cron.schedule("* * * * *", async () => {
   console.log("Running Cron Job: Checking submissions and calculating marks");
 
   try {
-    // Fetch all submissions that have not been graded yet
     const submissions = await Submission.find({ isGraded: false });
 
     for (const submission of submissions) {
@@ -30,18 +35,25 @@ cron.schedule("* * * * *", async () => {
         }
       }
 
-      // Update submission with total marks and mark it as graded
       submission.marks = totalMarks;
       submission.isGraded = true;
       await submission.save();
+
       const user = await User.findById(submission.userId);
-    
+
+
+      const html = compileTemplate({
+        name: user.name,
+        marks: totalMarks,
+      });
+
       const mailOptions = {
         from: process.env.EMAIL_USER,
-        to: user.email, // Assuming the user's email is stored in the userId field
-        subject: "Your Test Results",
-        text: `Dear ${user.name},\n\nYou have completed the test and scored ${totalMarks} marks.\n\nBest regards,\nExamts Team`,
+        to: user.email,
+        subject: "Your Test Results have arrived!!!",
+        html,
       };
+
       transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
           console.log("Error sending email:", error);

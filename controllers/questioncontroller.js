@@ -1,9 +1,9 @@
 const asyncHandler = require("express-async-handler");
 const Question = require("../modal/questionmodal");
 
-// @desc    Create a new question
-// @route   POST /api/questions
-// @access  Private
+//     Create a new question
+//    POST /api/questions
+
 const createQuestion = asyncHandler(async (req, res) => {
   const { question, options, correctOption, testId, marks } = req.body;
 
@@ -18,9 +18,9 @@ const createQuestion = asyncHandler(async (req, res) => {
   res.status(201).json(newQuestion);
 });
 
-// @desc    Get a question by ID
-// @route   GET /api/questions/:id
-// @access  Private
+//     Get a question by ID
+//    GET /api/questions/:id
+
 const getQuestionById = asyncHandler(async (req, res) => {
   const question = await Question.findById(req.params.id);
 
@@ -32,9 +32,9 @@ const getQuestionById = asyncHandler(async (req, res) => {
   res.json(question);
 });
 
-// @desc    Update a question
-// @route   PUT /api/questions/:id
-// @access  Private
+//     Update a question
+//    PUT /api/questions/:id
+
 const updateQuestion = asyncHandler(async (req, res) => {
   const { question, options, correctOption, marks } = req.body;
 
@@ -52,9 +52,9 @@ const updateQuestion = asyncHandler(async (req, res) => {
   res.json(updatedQuestion);
 });
 
-// @desc    Delete a question (soft delete)
-// @route   DELETE /api/questions/:id
-// @access  Private
+//    Delete a question (soft delete)
+//    DELETE /api/questions/:id
+
 const deleteQuestion = asyncHandler(async (req, res) => {
   const question = await Question.findById(req.params.id);
 
@@ -69,9 +69,8 @@ const deleteQuestion = asyncHandler(async (req, res) => {
   res.status(204).json({ message: "Question deleted" });
 });
 
-// @desc    Get all questions
-// @route   GET /api/questions
-// @access  Private
+//   Get all questions
+//   GET /api/questions
 const getAllQuestions = asyncHandler(async (req, res) => {
   const questions = await Question.find({ isDeleted: false });
   res.json(questions);
